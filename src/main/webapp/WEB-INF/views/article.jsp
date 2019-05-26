@@ -18,7 +18,7 @@
             </ul>
         </nav>
     </aside>
-    <script src='/resources/scripts/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full,/resources/scripts/mwMathJaxConfig'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full,/resources/scripts/mwMathJaxConfig'></script>
     <div class="content">
         <div id="heading">
             <h1>${article.getName()}</h1>

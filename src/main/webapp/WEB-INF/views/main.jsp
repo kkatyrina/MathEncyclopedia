@@ -21,7 +21,7 @@
         <div id="heading">
             <h1>Example</h1>
         </div>
-        Start with 👉🏻 <a href="/index.php/Differential">Differential</a>
+        Start with 👉🏻 <a href="/en/Differential">Differential</a>
     </div>
 </body>
 </html>
