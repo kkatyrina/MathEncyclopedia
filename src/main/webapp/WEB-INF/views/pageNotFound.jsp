@@ -3,15 +3,15 @@
 <html>
 <head>
     <link rel="stylesheet" href="<c:url value="/resources/css/styles.css" />">
-    <title>Example</title>
+    <title>404</title>
 </head>
 <body>
     <%@ include file="aside.jsp" %>
     <div class="content">
         <div id="heading">
-            <h1>Example</h1>
+            <h1>404</h1>
         </div>
-        Start with 👉🏻 <a href="/en/Function_of_bounded_variation">Function of bounded variation</a>
+        Запрашиваемая страница не найдена 👀
     </div>
 </body>
 </html>

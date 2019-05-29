@@ -26,6 +26,10 @@ public class Model {
         return baseUri + "#" + relativeUri;
     }
 
+    public static String unmakeAbsoluteUri(String absoluteUri) {
+        return absoluteUri.replace(baseUri + "#", "");
+    }
+
     private Model() {
         model = ModelFactory.createDefaultModel();
         InputStream in = FileManager.get().open(modelFileName);
