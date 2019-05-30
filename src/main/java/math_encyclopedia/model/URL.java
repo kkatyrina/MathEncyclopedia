@@ -22,12 +22,17 @@ public class URL implements Comparable {
         if (title != null) {
             html += " title=\"" + StringEscapeUtils.escapeHtml4(title) + "\"";
         }
-        html += " href=\"" + url + "\"";
+        if (url != null)
+            html += " href=\"" + url + "\"";
+        else
+            html += " class=\"undefined\"";
         html += ">" + text + "</a>";
         return html;
     }
 
     public String html() {
+        if (title == null && url == null)
+            return "";
         if (title != null)
             return html(title);
         else
@@ -37,8 +42,11 @@ public class URL implements Comparable {
     @Override
     public int compareTo(@NonNull Object o) {
         URL other = (URL) o;
-        if (title == null || other.title == null || title.compareTo(other.title) == 0)
-            return url.compareTo(other.url);
-        return title.compareTo(other.title);
+        int res = 0;
+        if (title != null && other.title != null)
+            res = title.compareTo(other.title);
+        if (res == 0 && url != null && other.url != null)
+            res = url.compareTo(other.url);
+        return res;
     }
 }

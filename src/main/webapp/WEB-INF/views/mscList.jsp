@@ -11,9 +11,6 @@
         <div id="heading">
             <h1>Индекс MSC</h1>
         </div>
-        <script>
-            <%@ include file="/resources/scripts/expandCollapse.js" %>
-        </script>
         <ul class="msc-sub-categories">
             <c:forEach items="${root.getChildren()}" var="subCategory">
                 <c:set var="category" value="${subCategory}" scope="request"/>

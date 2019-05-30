@@ -11,9 +11,6 @@
         <div id="heading">
             <h1>MSC ${msc.getId()} — ${msc.getTitle()}</h1>
         </div>
-        <script>
-            <%@ include file="/resources/scripts/expandCollapse.js" %>
-        </script>
         <c:if test="${!msc.getArticles().isEmpty()}">
             <ul class="msc-articles">
                 <c:forEach items="${msc.getArticles()}" var="article">

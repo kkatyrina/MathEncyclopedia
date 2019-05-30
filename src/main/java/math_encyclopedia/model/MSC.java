@@ -23,14 +23,16 @@ class RussianMSC extends MSC {
     TreeSet<URL> FillArticles() throws Exception {
         TreeSet<URL> ret = new TreeSet<>();
         ResultSet res = Model.instance().select(
-                "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" +
-                        " SELECT ?title ?url" +
-                        " WHERE {" +
+            "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" +
+                    " SELECT ?title ?url" +
+                    " WHERE {" +
                         "?articleEn <" + makeAbsoluteUri("Относится_к_разделу") + "> <" + makeAbsoluteUri(id) + "> . " +
                         "?articleRu <" + makeAbsoluteUri("Имеет_перевод") + "> ?articleEn . " +
                         "?articleRu rdfs:label ?title . " +
                         "?articleRu rdfs:comment ?url . " +
-                        "}");
+                    "}");
+        if (res == null)
+            return ret;
         while (res.hasNext()) {
             QuerySolution article = res.next();
             ret.add(new URL(article.getLiteral("url").toString(), article.getLiteral("title").toString()));
@@ -59,6 +61,8 @@ class EnglishMSC extends MSC {
                         "?article rdfs:label ?title . " +
                         "?article rdfs:comment ?url . " +
                         "}");
+        if (res == null)
+            return ret;
         while (res.hasNext()) {
             QuerySolution article = res.next();
             ret.add(new URL(article.getLiteral("url").toString(), article.getLiteral("title").toString()));
@@ -86,6 +90,8 @@ public abstract class MSC implements Comparable, Translatable {
                     " WHERE {" +
                         "?child <" + makeAbsoluteUri("Подраздел_MSC") + "> <" + makeAbsoluteUri(id) + "> . " +
                     "}");
+        if (res == null)
+            return ret;
         while (res.hasNext()) {
             QuerySolution child = res.next();
             ret.add(MSC.create(language(), unmakeAbsoluteUri(child.getResource("child").toString())));
@@ -101,6 +107,8 @@ public abstract class MSC implements Comparable, Translatable {
                     " WHERE {" +
                         "?related <" + makeAbsoluteUri("Связан_с_разделом_MSC_MSC") + "> <" + makeAbsoluteUri(id) + "> . " +
                     "}");
+        if (res == null)
+            return ret;
         while (res.hasNext()) {
             QuerySolution related = res.next();
             ret.add(MSC.create(language(), unmakeAbsoluteUri(related.getResource("related").toString())));
@@ -136,11 +144,14 @@ public abstract class MSC implements Comparable, Translatable {
         return articles;
     }
 
-    private URL getUrl(String language) {
-        return new URL("/msc/" + getId() + "/" + language, getTitle());
+    private URL getUrl(String language) throws Exception {
+        String url = null;
+        if (!getChildren().isEmpty() || !getArticles().isEmpty())
+            url = "/msc/" + getId() + "/" + language;
+        return new URL(url, getTitle());
     }
 
-    public URL getUrl() {
+    public URL getUrl() throws Exception {
         return getUrl(language());
     }
 

@@ -4,7 +4,7 @@ body {
     position:relative;
 }
 
-.expandable > .category-title {
+.expandable > .category-title,.referenced-in {
     text-decoration: underline;
     -webkit-text-decoration-style: dashed;
     color: #0645ad;
@@ -13,6 +13,10 @@ body {
 }
 
 .category-title {
+    display: inline;
+}
+
+.referenced-in {
     display: inline;
 }
 
@@ -39,6 +43,11 @@ a {
     text-decoration: none;
     color: #0645ad;
     background: none;
+}
+
+a.undefined {
+    color: #ba0000;
+    cursor: pointer;
 }
 
 a.external {

@@ -20,7 +20,19 @@
             <h2 class="alphabetical_group" id="${item.getKey()}">${item.getKey()}</h2>
             <ul class="alphabetical_item">
                 <c:forEach items="${item.getValue()}" var="value">
-                    <li>${value.html()}</li>
+                    <li class="expandable">
+                        ${value.getUrl().html()}
+                        <c:if test="${!value.getReferencedIn().isEmpty()}">
+                                <div class="referenced-in" onclick="expandCollapse(this)">
+                                     [упоминается в]
+                                </div>
+                        </c:if>
+                        <ul>
+                            <c:forEach items="${value.getReferencedIn()}" var="reference">
+                                <li>${reference.html()}</li>
+                            </c:forEach>
+                        </ul>
+                    </li>
                 </c:forEach>
             </ul>
         </c:forEach>

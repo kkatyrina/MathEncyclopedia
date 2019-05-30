@@ -3,7 +3,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="<c:url value="/resources/css/styles.css" />">
-    <title>${article.getName()}</title>
+    <title>${article.getTitle()}</title>
 </head>
 <body>
     <%@ include file="aside.jsp" %>
@@ -11,7 +11,7 @@
     <script defer src='/resources/scripts/externalLinkDetection.js'></script>
     <div class="content">
         <div id="heading">
-            <h1>${article.getName()}</h1>
+            <h1>${article.getTitle()}</h1>
         </div>
         ${article.getBody()}
         <c:if test="${!article.getSeeAlso().isEmpty()}">
@@ -19,6 +19,15 @@
             <ul class="see_also">
                 <c:forEach items="${article.getSeeAlso()}" var="ref">
                     <li>${ref.html()}</li>
+                </c:forEach>
+            </ul>
+        </c:if>
+        <c:if test="${!article.getMsc().isEmpty()}">
+            <h2>MSC</h2>
+            <ul>
+                <c:forEach items="${article.getMsc()}" var="msc">
+                    <c:set var="category" value="${msc}" scope="request"/>
+                    <jsp:include page="mscCategory.jsp"/>
                 </c:forEach>
             </ul>
         </c:if>
