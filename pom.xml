@@ -15,7 +15,7 @@
         <spring.version>5.1.6.RELEASE</spring.version>
         <servlet.version>3.1.0</servlet.version>
         <jstl.version>1.2</jstl.version>
-        <jena.version>3.10.0</jena.version>
+        <jena.version>3.11.0</jena.version>
         <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
         <maven-war-plugin.version>3.2.2</maven-war-plugin.version>
         <apache.commons.text.version>1.6</apache.commons.text.version>
@@ -57,6 +57,18 @@
         <dependency>
             <groupId>org.apache.jena</groupId>
             <artifactId>jena-arq</artifactId>
+            <version>${jena.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.jena</groupId>
+            <artifactId>jena-text</artifactId>
+            <version>${jena.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.jena</groupId>
+            <artifactId>jena-fuseki-main</artifactId>
             <version>${jena.version}</version>
         </dependency>
 

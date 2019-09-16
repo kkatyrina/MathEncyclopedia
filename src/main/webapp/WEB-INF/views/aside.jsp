@@ -11,6 +11,7 @@
         <ul class="aside-menu">
             <li><a href="/articles/ru">Алфавитный указатель</a></li>
             <li><a href="/msc/ru">Индекс MSC</a></li>
+            <li><a href="http://localhost:3030/dataset.html">SPARQL-сервер</a></li>
         </ul>
     </nav>
     <c:if test="${!empty translations && !translations.isEmpty()}">
